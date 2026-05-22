@@ -1,0 +1,238 @@
+calibrate_start:
+  name: Start Calibration
+  description: Starts calibration process with predefined target volume.
+  fields:
+    entity_id:
+      name: Device
+      description: The AFD pump device to control.
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+
+calibrate_stop:
+  name: Stop Calibration
+  description: Stops ongoing calibration.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+
+calibrate_set_volume:
+  name: Set Calibration Target Volume
+  description: Set target volume (ml) for calibration.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+    volume:
+      name: Volume (ml)
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 10000
+          unit_of_measurement: ml
+
+dispense_run:
+  name: Run Dispense
+  description: Starts dispensing of preset volume.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+
+dispense_stop:
+  name: Stop Dispense
+  description: Stops current dispensing task.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+
+dispense_set_volume:
+  name: Set Dispense Volume
+  description: Sets volume (ml) for the next dispense operation.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+    volume:
+      name: Volume (ml)
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 10000
+          unit_of_measurement: ml
+
+set_brightness:
+  name: Set LED Brightness
+  description: Change LED brightness (0-100%).
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+    brightness_percent:
+      name: Brightness (%)
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 100
+          unit_of_measurement: "%"
+
+schedule_add:
+  name: Add Schedule Job
+  description: Adds a new scheduled dispensing job.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+    hour:
+      name: Hour (0-23)
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 23
+    minute:
+      name: Minute (0-59)
+      required: true
+      selector:
+        number:
+          min: 0
+          max: 59
+    days_mask:
+      name: Days Mask
+      description: Bitmask (1=Mon,2=Tue,4=Wed,8=Thu,16=Fri,32=Sat,64=Sun)
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 127
+    volume:
+      name: Volume (ml)
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 10000
+          unit_of_measurement: ml
+    enabled:
+      name: Enabled
+      required: false
+      default: true
+      selector:
+        boolean: {}
+
+schedule_remove:
+  name: Remove Schedule Job
+  description: Removes a schedule job by ID.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+    job_id:
+      name: Job ID
+      required: true
+      selector:
+        number:
+          min: 1
+
+schedule_update:
+  name: Update Schedule Job
+  description: Update an existing schedule job.
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump
+    job_id:
+      name: Job ID
+      required: true
+      selector:
+        number:
+          min: 1
+    hour:
+      name: Hour
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 23
+    minute:
+      name: Minute
+      required: false
+      selector:
+        number:
+          min: 0
+          max: 59
+    days_mask:
+      name: Days Mask
+      required: false
+      selector:
+        number:
+          min: 1
+          max: 127
+    volume:
+      name: Volume
+      required: false
+      selector:
+        number:
+          min: 1
+          max: 10000
+          unit_of_measurement: ml
+    enabled:
+      name: Enabled
+      required: false
+      selector:
+        boolean: {}
+
+schedule_get:
+  name: Get Schedule
+  description: Request current schedule from device (updates sensor).
+  fields:
+    entity_id:
+      name: Device
+      required: true
+      selector:
+        entity:
+          domain: switch
+          integration: afd_pump

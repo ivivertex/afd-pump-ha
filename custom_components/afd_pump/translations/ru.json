@@ -1,0 +1,19 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Подключение к AFD Pump Controller",
+        "description": "Введите префикс топиков MQTT, используемый устройством AFD (по умолчанию: AFD)",
+        "data": {
+          "topic_prefix": "Префикс топика"
+        }
+      }
+    },
+    "error": {
+      "invalid_prefix": "Неверный префикс. Не может быть пустым."
+    },
+    "abort": {
+      "already_configured": "Устройство с таким префиксом уже настроено."
+    }
+  }
+}
